@@ -20,7 +20,7 @@ async def on_ready():
 			if channel.permissions_for(server.me).send_messages:
 				await bot.send_message(channel, "...")
 				# So that we don't send to every channel:
-				break
+			break
 @bot.command(pass_context=True)
 async def ping(ctx): #ping is the actual command name
 	await bot.say(":ping_pong: ping!")
