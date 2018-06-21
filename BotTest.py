@@ -32,4 +32,4 @@ async def test_on_error(ctx,error):
 
 
 
-bot.run("NDU5MDkwODMwMzMwNjkxNTk0.DgxKlg.UbQSu8ZJjCG2SQcCziZkq1jZvyI")
+bot.run()
