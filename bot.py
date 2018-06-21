@@ -13,7 +13,14 @@ bot= commands.Bot(command_prefix = "!") #use this prefix for commands
 @bot.event
 async def on_ready():
 	print("Bot is ready")
-	await bot.say("I'm online!")
+	for server in bot.servers: 
+        # Spin through every server
+		for channel in server.channels: 
+			# Channels on the server
+			if channel.permissions_for(server.me).send_messages:
+				await bot.send_message(channel, "...")
+				# So that we don't send to every channel:
+				break
 @bot.command(pass_context=True)
 async def ping(ctx): #ping is the actual command name
 	await bot.say(":ping_pong: ping!")
