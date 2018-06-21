@@ -23,6 +23,7 @@ async def info(ctx, user: discord.Member):
 	if user.game == None: #check if the user is playing anything
 		user.game = "Nothing"
 	await bot.say("The username is: {}".format(user.name))
+	await bot.say("The user's ID is: " + user.id)
 	await bot.say("The user is playing: " + str(user.game))
 	await bot.say(user.name + " is " + str(user.status))
 @info.error #if !info errors
