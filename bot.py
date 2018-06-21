@@ -13,11 +13,12 @@ bot= commands.Bot(command_prefix = "!") #use this prefix for commands
 @bot.event
 async def on_ready():
 	print("Bot is ready")
-
+	await bot.say("I'm online!")
 @bot.command(pass_context=True)
 async def ping(ctx): #ping is the actual command name
 	await bot.say(":ping_pong: ping!")
 	print("Ping command")
+	
 @bot.command(pass_context=True)
 async def info(ctx, user: discord.Member):
 	if user.game == None: #check if the user is playing anything
