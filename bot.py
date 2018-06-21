@@ -4,7 +4,7 @@ from discord.ext import commands
 import asyncio
 
 import time
-
+token = process.env.token
 Client = discord.Client()
 bot= commands.Bot(command_prefix = "!") #use this prefix for commands
 
@@ -32,4 +32,4 @@ async def test_on_error(ctx,error):
 
 
 
-bot.run(BOT_TOKEN)
+bot.run(token)
