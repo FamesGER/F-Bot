@@ -32,4 +32,4 @@ async def test_on_error(ctx,error):
 
 
 
-bot.run(process.env.BOT_TOKEN)
+bot.run(BOT_TOKEN)
