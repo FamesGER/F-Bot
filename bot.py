@@ -46,34 +46,32 @@ async def on_message(message):
 		#args[0] = !SAY
 		#args[1] = Hi
 		#args[2] = there
-			
 			await bot.send_message(message.channel, " ".join(args[1:]))
 		except:
 			print ("No say input")
 			return
-	
+
 	if message.content.upper().startswith("!INFO"):
-		try:
+		try: #get mentioned user
+			user = message.mentions[0]
+		except: #if no user is mentioned, use the message author
 			server = message.server #get the server that the message got typed in
 			userIDdirty= message.author.mention #get the user that typed it
 			userID = ("".join(e for e in userIDdirty if e.isalnum()))
-			user = server.get_member(userID)
-			bot.send_message(message.channel, str(user))
-			if user.game == None: #check if the user is playing anything
-				user.game = ("Nothing")
-			await bot.send_message(message.channel,"The username is: {}".format(user.name))
-			await bot.send_message(message.channel,"The user's ID is: " + user.id)
-			await bot.send_message(message.channel,"The user is playing: " + str(user.game))
-			await bot.send_message(message.channel,"The user is " + str(user.status))
-		except:
-			await bot.send_message(message.channel, "No Info")
-			return
-	if message.content.upper().startswith("!TESTIMG"):
-		try:
-			image = message.attachments
-			await bot.send_message(message.channel, image[0]['url']) #returns image url
-		except:
-			await bot.send_message(message.channel,"No Image")
+			user = server.get_member(userID) #get the user in the server
+
+		if user.game == None: #check if the user is playing anything
+			user.game = ("Nothing")
+
+		userEmbed = discord.Embed(
+
+			title = user.name,
+			description= 	"ID: " +user.id + "\n"
+							"Is playing: "+str(user.game) + "\n"
+							"Status: "+str(user.status) + "\n"
+		)
+		userEmbed.set_image(url=user.avatar_url)
+		await bot.send_message(message.channel,embed=userEmbed)
 
 	if message.content.upper().startswith("!SADCAT") or message.content.startswith("<:GWfroggySadCat:400751069619159050>"):
 		embed = discord.Embed()
