@@ -81,11 +81,4 @@ async def on_message(message):
 		await bot.send_message(message.channel,embed=embed)
 
 
-
-
-
-	#if message.content.startswith("<:GWfroggySadCat:400751069619159050>"): #if someone starts with the ol' classic sadCat emoji
-	#	await bot.add_reaction(message,emoji="😢")
-
-
 bot.run(os.environ.get('token'))
