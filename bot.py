@@ -31,7 +31,7 @@ async def dailyDuck():
 	while not bot.is_closed:
 		timeNow = datetime.datetime.now()
 		if timeNow.hour == 14 and timeNow.minute == 1: #UTC 10:01 
-			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweet().status() #get tweet and media from DucksDaily
+			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily
 			await bot.send_message(message.channel, newDuck)
 		await asyncio.sleep(10) # task runs every 60 seconds
 
@@ -136,7 +136,7 @@ async def on_message(message):
 			await bot.send_message(message.channel, messageNEW)
 
 	if message.content.upper().startswith("!LATESTDUCK"):
-		newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweet().status() #get tweet and media from DucksDaily
+		newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily
 		await bot.send_message(message.channel, newDuck)
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
