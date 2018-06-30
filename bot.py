@@ -39,7 +39,7 @@ async def dailyDuck():
 async def on_ready():
 	print("Bot is ready")
 	await bot.change_presence(game=discord.Game(name='with other bots '))
-
+	
 @bot.event
 async def on_message(message):
 	if message.author.id == "459090830330691594": #go out of function if the bot anything
