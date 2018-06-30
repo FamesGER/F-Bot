@@ -1,5 +1,4 @@
-
-class getTweet(self):
+class getTweet():
 	import tweepy
 	from tweepy import OAuthHandler
 	
@@ -9,9 +8,12 @@ class getTweet(self):
 		self.a_token = access_token
 		self.a_secret = access_secret
 		
-	auth = OAuthHandler(self.c_key, self.c_secret)
-	auth.set_access_token(self.a_token, self.a_secret)
-	twitterAPI = tweepy.API(auth)
+	setAuth(self):
+		from tweepy import OAuthHandler
+		newAuth =  OAuthHandler(self.c_key, self.c_secret)
+		newAuth.set_access_token(self.a_token, self.a_secret)
+
+	twitterAPI = tweepy.API(setAuth())
 
 	tweet = twitterAPI.user_timeline(screen_name = '@Ducks_Daily', count = 1, include_rts = False, include_entities =True) #get 1 tweet from Ducks Daily 
 	
