@@ -1,5 +1,5 @@
 
-class getTweet():
+class getTweet(self):
 	import tweepy
 	from tweepy import OAuthHandler
 	
