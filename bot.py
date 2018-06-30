@@ -10,7 +10,7 @@ import requests
 from io import BytesIO
 from io import StringIO
 import urllib
-import twitterstatus
+import twitterstatus(c_key,c_secret,a_token,a_secret)
 
 c_key = os.environ.get('c_key')
 c_secret = os.environ.get('c_secret')
