@@ -137,7 +137,7 @@ async def on_message(message):
 
 	if message.content.upper().startswith("!LATESTDUCK"):
 		newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily
-		await bot.send_message(message.channel, newDuck)
+		await bot.add_raction(awaitt bot.send_message(message.channel, newDuck),emoji="🦆")
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 
