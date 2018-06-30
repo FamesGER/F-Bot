@@ -12,6 +12,7 @@ class getTweet():
 	def setAuth(self):
 		newAuth = OAuthHandler(self.c_key, self.c_secret)
 		newAuth.set_access_token(self.a_token, self.a_secret)
+		return newAuth
 
 	auth = setAuth()
 	 
