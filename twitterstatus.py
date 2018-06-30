@@ -23,4 +23,4 @@ class getTweet():
 			return (media.entities['media'][0]['media_url_https'])
 	def tweetStatus(self):
 			for status in self.tweet():
-				eturn (status.entities['media'][0]['expanded_url'])
+				return (status.entities['media'][0]['expanded_url'])
