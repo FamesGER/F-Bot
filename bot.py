@@ -11,13 +11,14 @@ from io import BytesIO
 from io import StringIO
 import urllib
 
+import twitterstatus
 
 c_key = os.environ.get('c_key') 
 c_secret = os.environ.get('c_secret')
 a_token = os.environ.get('a_token')
 a_secret = os.environ.get('a_secret')
 
-import twitterstatus(c_key,c_secret,a_token,a_secret)
+
 
 Client = discord.Client()
 bot= commands.Bot(command_prefix = "") #use this prefix for commands
