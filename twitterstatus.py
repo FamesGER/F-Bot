@@ -16,6 +16,7 @@ class getTweet():
 
 		twitterAPI = tweepy.API(auth)
 		tweet = twitterAPI.user_timeline(screen_name = '@Ducks_Daily', count = 1, include_rts = False, include_entities =True) #get 1 tweet from Ducks Daily 
+		return tweet
 	
 	def tweetMedia():
 		for media in getTweet.tweet:
