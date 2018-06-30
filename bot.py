@@ -5,11 +5,6 @@ from discord.ext import commands
 import asyncio
 import datetime
 import io
-from PIL import Image
-import requests
-from io import BytesIO
-from io import StringIO
-import urllib
 
 import twitterstatus
 
@@ -29,24 +24,25 @@ async def dailyDuck():
 	while not bot.is_closed:
 		timeNow = datetime.datetime.now()
 		if timeNow.hour == 14 and timeNow.minute == 1: #UTC 10:01 
-			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily
+			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily, plus insert the tokens
 			await bot.send_message(message.channel, newDuck)
 		await asyncio.sleep(10) # task runs every 60 seconds
+
+@bot.event
+async def on_ready():
+	print("Bot is ready")
+	await bot.change_presence(game=discord.Game(name='with other bots '))
+
 @bot.event
 async def on_reaction_add(reaction,user):
 	if str(reaction.emoji) == "<:GWfroggySadCat:400751069619159050>":
 		await bot.add_reaction(reaction.message,emoji = reaction.emoji)
 	else:
 		return
-	
-@bot.event
-async def on_ready():
-	print("Bot is ready")
-	await bot.change_presence(game=discord.Game(name='with other bots '))
-	
+
 @bot.event
 async def on_message(message):
-	if message.author.id == "459090830330691594": #go out of function if the bot anything
+	if message.author.id == "459090830330691594": #go out of function if the bot did it
 		return
 
 	if message.content.upper().startswith("!KILLFBOT"):
@@ -59,7 +55,7 @@ async def on_message(message):
 			await bot.send_message(message.channel, "Only the bot owner can shut me down!")
 
 	if message.content.upper().startswith("!PING"):
-		await bot.send_message(message.channel, "Pong!")
+		await bot.send_message(message.channel, ":ping_pong: ")
 
 	if message.content.upper().startswith("!LOSS"):
 		try:
@@ -120,7 +116,6 @@ async def on_message(message):
 			if ("PAY" in  message.content.upper() and "RESPECT" in message.content.upper()) or ("PRESS" in message.content.upper() and "F" in message.content.upper()):
 				await bot.add_reaction(message, emoji = "🇫")
 			return
-
 		await bot.add_reaction(message, emoji = "🇫")
 
 	if message.content.upper().startswith("!TSOURCE") and message.author.id == "143132657692311561" : #like !say, but for me only and in TeamSource's meme crafting channel
@@ -139,9 +134,13 @@ async def on_message(message):
 		else:
 			await bot.send_message(message.channel, messageNEW)
 
-	if message.content.upper().startswith("!LATESTDUCK"):
+	if message.content.upper().startswith("!DUCK"):
 		newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily
 		await bot.send_message(message.channel, newDuck)
+
+	if message.content.upper().startswith("!HELP"):
+		import bothelp #import the bothelp file (to save space here)
+		await bot.send_message(message.channel,bothelp.commandHelp())
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 
