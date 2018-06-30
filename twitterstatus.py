@@ -11,8 +11,8 @@ class getTweet():
 
 	def setAuth():
 		from tweepy import OAuthHandler
-		newAuth = OAuthHandler(getTweet.c_key, getTweet.c_secret)
-		newAuth.set_access_token(getTweet.a_token, getTweet.a_secret)
+		newAuth = OAuthHandler(getTweet().c_key, getTweet().c_secret)
+		newAuth.set_access_token(getTweet().a_token, getTweet().a_secret)
 		return newAuth
 
 	auth = setAuth()
