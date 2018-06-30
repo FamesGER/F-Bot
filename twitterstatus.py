@@ -1,15 +1,18 @@
 
 class getTweet():
+	import tweepy
+	from tweepy import OAuthHandler
+	
 	def __init__(self, consumer_key,consumer_secret,acces_token_access_secret):
 		self.c_key = consumer_key
 		self.c_secret = consumer_secret
 		self.a_token = access_token
 		self.a_secret = access_secret
-	
-	import tweepy
-	from tweepy import OAuthHandler
+		
+	def setAuth(self):
+		return = OAuthHandler(self.c_key, self.c_secret)
 
-	auth = OAuthHandler(self.c_key, self.c_secret)
+	auth = setAuth():
 	auth.set_access_token(self.a_token, self.a_secret)
 	 
 	twitterAPI = tweepy.API(auth)
