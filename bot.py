@@ -18,8 +18,6 @@ c_secret = os.environ.get('c_secret')
 a_token = os.environ.get('a_token')
 a_secret = os.environ.get('a_secret')
 
-
-
 Client = discord.Client()
 bot= commands.Bot(command_prefix = "") #use this prefix for commands
 
@@ -34,7 +32,13 @@ async def dailyDuck():
 			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily
 			await bot.send_message(message.channel, newDuck)
 		await asyncio.sleep(10) # task runs every 60 seconds
-
+@bot.event
+async def on_reaction_add(reaction,user):
+	if str(reaction.emoji) == "<:GWfroggySadCat:400751069619159050>":
+		await bot.add_reaction(reaction.message,emoji = reaction.emoji)
+	else:
+		return
+	
 @bot.event
 async def on_ready():
 	print("Bot is ready")
