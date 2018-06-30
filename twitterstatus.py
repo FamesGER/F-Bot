@@ -19,8 +19,8 @@ class getTweet():
 		return tweet
 	
 	def tweetMedia():
-		for media in getTweet.tweet:
+		for media in self.tweet():
 			return (media.entities['media'][0]['media_url_https'])
 	def tweetStatus():
-			for status in getTweet.tweet:
+			for status in self.tweet():
 				eturn (status.entities['media'][0]['expanded_url'])
