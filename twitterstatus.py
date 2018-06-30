@@ -13,8 +13,7 @@ class getTweet():
 		newAuth =  OAuthHandler(self.c_key, self.c_secret)
 		newAuth.set_access_token(self.a_token, self.a_secret)
 
-	twitterAPI = tweepy.API(setAuth())
-
+	twitterAPI = tweepy.API(setAuth(self))
 	tweet = twitterAPI.user_timeline(screen_name = '@Ducks_Daily', count = 1, include_rts = False, include_entities =True) #get 1 tweet from Ducks Daily 
 	
 	def tweetMedia():
