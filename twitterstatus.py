@@ -14,7 +14,7 @@ class getTweet():
 		newAuth.set_access_token(self.a_token, self.a_secret)
 		return newAuth
 
-	auth = setAuth()
+	auth = setAuth(self)
 	 
 	twitterAPI = tweepy.API(auth)
 
