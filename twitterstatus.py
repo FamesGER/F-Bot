@@ -1,10 +1,10 @@
 
 class getTweet():
 	def __init__(self, consumer_key,consumer_secret,acces_token_access_secret):
-		self.consumer_key = c_key
-		self.consumer_key = c_secret
-		self.consumer_key = a_token
-		self.consumer_key = a_secret
+		self.c_key = consumer_key
+		self.c_secret = consumer_secret
+		self.a_token = access_token
+		self.a_secret = access_secret
 	
 	import tweepy
 	from tweepy import OAuthHandler
