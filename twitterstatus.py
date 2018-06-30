@@ -18,9 +18,10 @@ class getTweet():
 		tweet = twitterAPI.user_timeline(screen_name = '@Ducks_Daily', count = 1, include_rts = False, include_entities =True) #get 1 tweet from Ducks Daily 
 		return tweet
 	
-	def tweetMedia(self):
-		for media in self.tweet():
-			return (media.entities['media'][0]['media_url_https'])
 	def tweetStatus(self):
 			for status in self.tweet():
-				return (status.entities['media'][0]['expanded_url'])
+				try:
+					return (status.entities['media'][0]['expanded_url'])
+				except: #if it wasnt a tweet with media
+					returnText = status.text
+					return returnText
