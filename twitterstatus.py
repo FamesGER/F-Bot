@@ -8,7 +8,7 @@ class getTweet():
 		self.a_token = access_token
 		self.a_secret = access_secret
 		
-	class tweet(self):
+	def tweet(self):
 		from tweepy import OAuthHandler
 		auth = OAuthHandler(self.c_key, self.c_secret)
 		auth.set_access_token(self.a_token, self.a_secret)
