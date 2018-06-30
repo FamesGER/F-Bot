@@ -8,17 +8,17 @@ class getTweet():
 		self.a_token = access_token
 		self.a_secret = access_secret
 		
-	def setAuth(self):
+	def tweet(self):
 		from tweepy import OAuthHandler
-		newAuth =  OAuthHandler(self.c_key, self.c_secret)
-		newAuth.set_access_token(self.a_token, self.a_secret)
+		auth = OAuthHandler(self.c_key, self.c_secret)
+		auth.set_access_token(self.a_token, self.a_secret)
 
-	twitterAPI = tweepy.API(setAuth(self))
-	tweet = twitterAPI.user_timeline(screen_name = '@Ducks_Daily', count = 1, include_rts = False, include_entities =True) #get 1 tweet from Ducks Daily 
+		twitterAPI = tweepy.API(auth)
+		tweet = twitterAPI.user_timeline(screen_name = '@Ducks_Daily', count = 1, include_rts = False, include_entities =True) #get 1 tweet from Ducks Daily 
 	
-	def tweetMedia():
-		for media in getTweet.tweet:
-			return (media.entities['media'][0]['media_url_https'])
-	def tweetStatus():
-		for status in getTweet.tweet:
-			return (status.entities['media'][0]['expanded_url'])
+		def media():
+			for media in getTweet.tweet:
+				return (media.entities['media'][0]['media_url_https'])
+		def status():
+			for status in getTweet.tweet:
+				return (status.entities['media'][0]['expanded_url'])
