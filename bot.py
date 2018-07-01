@@ -17,10 +17,10 @@ Client = discord.Client()
 bot= commands.Bot(command_prefix = "") #use this prefix for commands
 async def dailyDuck():	
 	await bot.wait_until_ready()
-	counter = 0
 	animalChannel = discord.Object(id='435149265673912351') #py-buns animal kingdom
 	while not bot.is_closed:
 		timeNow = datetime.datetime.now()
+		print (timenow.hour)
 		if timeNow.hour == 10 and timeNow.minute == 1: #UTC 10:01 
 			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily, plus insert the tokens
 			await bot.send_message(animalChannel, newDuck)
