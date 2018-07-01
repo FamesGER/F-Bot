@@ -1,5 +1,5 @@
 class botgspread():
-	def __init__(self,sheetName= 'F-Botsheet',jsonFile):
+	def __init__(self,sheetName= 'F-Botsheet',jsonFile= ''):
 		self.sName = sheetName	
 		self.jFile = jsonFile
 
