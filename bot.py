@@ -13,7 +13,7 @@ c_secret = os.environ.get('c_secret')
 a_token = os.environ.get('a_token')
 a_secret = os.environ.get('a_secret')
 j_secret = {}
-j_secret.appent(os.environ.get('json_secret'))
+j_secret.append(os.environ.get('json_secret'))
 
 Client = discord.Client()
 bot= commands.Bot(command_prefix = "") #use this prefix for commands
