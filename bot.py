@@ -140,8 +140,8 @@ async def on_message(message):
 		await bot.send_message(message.channel,bothelp.commandHelp())
 		
 	if message.content.upper().startswith("!RANDOMDUCK"):
-		randomDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetRandom() #get random tweet
 		try:
+			randomDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetRandom() #get random tweet
 			await bot.send_message(message.channel, randomDuck)
 		except:
 			await bot.send_message(message.channel, "I couldn't get a random tweet!")
