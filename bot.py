@@ -6,12 +6,13 @@ import asyncio
 import datetime
 import io
 
-import twitterstatus
+import twitterstatus, botgspread
 
 c_key = os.environ.get('c_key') 
 c_secret = os.environ.get('c_secret')
 a_token = os.environ.get('a_token')
 a_secret = os.environ.get('a_secret')
+j_secret = os.environ.get('json_secret')
 
 Client = discord.Client()
 bot= commands.Bot(command_prefix = "") #use this prefix for commands
@@ -145,6 +146,10 @@ async def on_message(message):
 			await bot.send_message(message.channel, randomDuck)
 		except:
 			await bot.send_message(message.channel, "I couldn't get a random tweet!")
+			
+	if message.content.upper().startswith('!TESTGSPREAD'):
+		test = botgspread.botgspread(jsonFile = j_secret).cell_val(row=2,col=1)
+		print(test)
 		
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
