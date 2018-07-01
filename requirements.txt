@@ -5,3 +5,5 @@ chardet
 requests
 Pillow
 tweepy
+gspread
+oauth2client
