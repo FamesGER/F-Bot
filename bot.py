@@ -138,6 +138,14 @@ async def on_message(message):
 	if message.content.upper().startswith("!HELP"):
 		import bothelp #import the bothelp file (to save space here)
 		await bot.send_message(message.channel,bothelp.commandHelp())
+		
+	if message.content.upper().startswith("!RANDOMDUCK"):
+		randomDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetRandom() #get random tweet
+		try:
+			await bot.send_message(message.channel, randomDuck)
+		except:
+			await bot.send_message(message.channel, "I couldn't get a random tweet!")
+		
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 
