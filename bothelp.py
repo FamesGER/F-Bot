@@ -6,8 +6,8 @@ def commandHelp():
 			"!say - Makes the bot say something. \n"
 			"!loss - Gain.\n"
 			"!sadcat - Real sadcat hours.\n"
-			"!duck - latest duck tweet from @Ducks_Daily"
-			"!randomduck - random duck from the last 100 tweets from @Ducks_Daily"
+			"!duck - latest duck tweet from @Ducks_Daily.\n"
+			"!randomduck - random duck from the last 100 tweets from @Ducks_Daily."
            "```")
 	return text
 	
