@@ -21,10 +21,12 @@ async def dailyDuck():
 	animalChannel = discord.Object(id='435149265673912351') #py-buns animal kingdom
 	while not bot.is_closed:
 		timeNow = datetime.datetime.now()
-		if timeNow.hour == 10 and timeNow.minute == 1: #UTC 10:01, 12:01 GMT+1 
+		if timeNow.hour == 10 and timeNow.minute == 1: #UTC 10:01 
 			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily, plus insert the tokens
 			await bot.send_message(animalChannel, newDuck)
-		await asyncio.sleep(10) # task runs every 10 seconds
+			await asyncio.sleep(60)
+		else:
+			await asyncio.sleep(10) # task runs every 10 seconds
 
 @bot.event
 async def on_ready():
