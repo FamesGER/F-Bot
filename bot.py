@@ -24,6 +24,7 @@ async def dailyDuck():
 		if timeNow.hour == 10 and timeNow.minute == 1: #UTC 10:01 
 			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily, plus insert the tokens
 			await bot.send_message(animalChannel, newDuck)
+			botgspread.botgspread().row_ins(val="New duck" + str(timeNow.hour))
 			await asyncio.sleep(60)
 		else:
 			await asyncio.sleep(10) # task runs every 10 seconds
