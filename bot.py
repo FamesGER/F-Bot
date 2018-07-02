@@ -13,14 +13,15 @@ c_secret = os.environ.get('c_secret')
 a_token = os.environ.get('a_token')
 a_secret = os.environ.get('a_secret')
 
+timeNow = datetime.datetime.now()
 
 Client = discord.Client()
 bot= commands.Bot(command_prefix = "") #use this prefix for commands
+
 async def dailyDuck():	
 	await bot.wait_until_ready()
 	animalChannel = discord.Object(id='435149265673912351') #py-buns animal kingdom
 	while not bot.is_closed:
-		timeNow = datetime.datetime.now()
 		if timeNow.hour == 10 and timeNow.minute == 1: #UTC 10:01, 12:01 GMT+1 
 			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily, plus insert the tokens
 			await bot.send_message(animalChannel, newDuck)
@@ -71,6 +72,8 @@ async def on_message(message):
 		#args[1] = Hi
 		#args[2] = there
 			await bot.send_message(message.channel, " ".join(args[1:]))
+			gspreadmessage = [message.author.name, message.content, str(timeNow.month) + "." +  str(timeNow.day) + " at " + str(timeNow.hour) + ":" + str(timeNow.minute) + " UTC"]
+			botgspread.botgspread().row_ins(val=gspreadmessage)
 		except:
 			return
 
@@ -147,9 +150,8 @@ async def on_message(message):
 		except:
 			await bot.send_message(message.channel, "I couldn't get a random tweet!")
 			
-	if message.content.upper().startswith('!TESTGSPREAD'):
-		test = botgspread.botgspread().cell_val(row=2,col=1)
-		print(test)
+	if message.content.upper().startswith('!CLEARGSPREAD') and message.author.id == "143132657692311561":
+		botgspread.botgspread().delete_allrows()
 		
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
