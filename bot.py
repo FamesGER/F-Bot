@@ -78,34 +78,86 @@ async def on_message(message):
 			return
 
 	if message.content.upper().startswith("!INFO"):
-		try:
-			try: #get mentioned user
-				user = message.mentions[0]
-			except: #if no user is mentioned, use the message author
-				server = message.server #get the server that the message got typed in
-				userIDdirty= message.author.mention #get the user that typed it
-				userID = ("".join(e for e in userIDdirty if e.isalnum()))
-				user = server.get_member(userID) #get the user in the server
+		args = message.content.split(" ") #get message after command
 
-			if user.game == None: #check if the user is playing anything
-				user.game = ("Nothing")
+		if "".join(args[1:]) == 'server': #if !info server is called
+			newServer = message.server
+			numOffline = 0 #online
+			numOnline = 0 #offline
+			numIdle = 0 #away
+			numDND = 0 #busy
+			for currentMember in newServer.members:
+				if str(currentMember.status) == "online":
+					numOnline = numOnline +1
+				elif str(currentMember.status) == "offline":
+					numOffline = numOffline +1
+				elif str(currentMember.status) == "idle":
+					numIdle = numIdle +1
+				else:
+					numDND = numDND +1
 
-			if user.bot == True: #check if the pinged user is a bot
-				botCheck = " is a bot"
-			else:
-				botCheck= " is not a bot"
-			userEmbed = discord.Embed( #create the embed
-				title = user.name,
-				description= 	"ID: " +user.id + "\n"
-								"Is playing: "+str(user.game) + "\n"
-								"Status: "+str(user.status) + "\n"
-								"" + str(user.name) + botCheck + "\n"
-			)
-			userEmbed.set_image(url=user.avatar_url) #set the pinged user's avatar as the image
-			userEmbed.set_author(name = "Requested from: " + message.author.name )
-			await bot.send_message(message.channel,embed=userEmbed)
-		except:
-			await bot.send_message(message.channel,"E")
+			serverEmbed = discord.Embed(
+
+				title= newServer.name,
+				description= 	"**❯ General information** \n"
+								"Server region: " + str(newServer.region)+ "\n"
+								"Created at: " + str(newServer.created_at)+ "\n"
+								"Members: " + str(newServer.member_count) + "\n"
+								"**❯ Members** \n"
+								"**Total online**: " + str((numOnline + numIdle + numDND)) + "\n"
+								"Online: " + str(numOnline) + "\n"
+								"Idle: " + str(numIdle) + "\n"
+								"Busy: " + str(numDND) + "\n"
+								"Offline: " + str(numOffline) + "\n"
+								"**❯ Useless information** \n"
+								"Owner: " + str(newServer.owner.name) + "\n"
+								"Special features: " + str(newServer.features) +"\n"
+								"Splash: " +str(newServer.splash_url) + "\n"
+				)
+			serverEmbed.set_image(url=newServer.icon_url)
+			serverEmbed.set_footer(text= "Requested from: " + message.author.name)
+
+
+			await bot.send_message(message.channel,embed=serverEmbed)
+
+
+		else:
+			try:
+				try: #get mentioned user
+					user = message.mentions[0]
+				except: #if no user is mentioned, use the message author
+					server = message.server #get the server that the message got typed in
+					userIDdirty= message.author.mention #get the user that typed it
+					userID = ("".join(e for e in userIDdirty if e.isalnum()))
+					user = server.get_member(userID) #get the user in the server
+
+				if user.game == None: #check if the user is playing anything
+					user.game = ("Nothing")
+
+				if user.bot == True: #check if the pinged user is a bot
+					botCheck = "is a bot🤖"
+				else:
+					botCheck= "is not a bot"
+
+				try:
+					nickCheck= str(user.nick)
+				except:
+					nickCheck = ""
+
+				userEmbed = discord.Embed( #create the embed
+					title = user.name + " (" + nickCheck + ")",
+					description=
+									"ID: " +user.id + "\n"
+									"Is playing: "+str(user.game) + "\n"
+									"Status: "+str(user.status) + "\n"
+									"User " + botCheck + "\n"
+									"Joined at: " + str(user.joined_at) + "\n"
+				)
+				userEmbed.set_image(url=user.avatar_url) #set the pinged user's avatar as the image
+				userEmbed.set_footer(text= "Requested from: " + message.author.name)
+				await bot.send_message(message.channel,embed=userEmbed)
+			except:
+				await bot.send_message(message.channel,"E")
 
 	if message.content.upper().startswith("!SADCAT") or message.content.startswith("<:GWfroggySadCat:400751069619159050>"):
 		embed = discord.Embed()
