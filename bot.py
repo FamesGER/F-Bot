@@ -208,9 +208,9 @@ async def on_message(message):
 		embed.set_image(url="https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png") #sadcat image from github
 		await bot.send_message(message.channel,embed=embed)
 
-	if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper()  or "RESPECC" in message.content.upper()) or ("PRESS" in message.content.upper() and "F" in message.content.upper()) or message.content.upper().startswith("F") :
+	if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper() or "RESPECC" in message.content.upper()) or ("PRESS" in message.content.upper() and "F" in message.content.upper()) or message.content.upper().startswith("F") :
 		if message.content.upper().startswith("F") and len(message.content) > 1:
-			if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper()  or "RESPECC" in message.content.upper()) or ("PRESS" in message.content.upper() and "F" in message.content.upper()):
+			if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper() or "RESPECC" in message.content.upper()) or ("PRESS" in message.content.upper() and "F" in message.content.upper()):
 				await bot.add_reaction(message, emoji = "🇫")
 			return
 		await bot.add_reaction(message, emoji = "🇫")
