@@ -55,7 +55,8 @@ class MyStreamListener(tweepy.StreamListener): #stream for birdperhour bot
 				try:
 					birdtext= (status.entities['media'][0]['expanded_url'])
 				except:
-					birdtext = status.text
+					birdtext= "_ _" #global (B)ird(P)er(H)our var
+					birdtextCheck = "_ _" #global check var
 
 		def on_error(self, status_code): #disconnect if we fail
 			if status_code == 420:
