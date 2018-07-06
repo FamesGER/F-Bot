@@ -44,6 +44,8 @@ async def on_reaction_add(reaction,user):
 import tweepy
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
+birdtext= "_ _" #global (B)ird(P)er(H)our var
+birdtextCheck = "_ _" #global check var
 
 class MyStreamListener(tweepy.StreamListener): #stream for birdperhour bot
 		def on_status(self, status):
