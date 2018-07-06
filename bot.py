@@ -40,6 +40,11 @@ async def on_reaction_add(reaction,user):
 		await bot.add_reaction(reaction.message,emoji = reaction.emoji)
 	else:
 		return
+	
+import tweepy
+from tweepy import OAuthHandler
+from tweepy.streaming import StreamListener
+
 class MyStreamListener(tweepy.StreamListener): #stream for birdperhour bot
 		def on_status(self, status):
 			global birdtext
