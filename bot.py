@@ -40,7 +40,7 @@ async def on_reaction_add(reaction,user):
 		await bot.add_reaction(reaction.message,emoji = reaction.emoji)
 	else:
 		return
-	
+'''	
 import tweepy
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
@@ -84,7 +84,7 @@ async def bphMessageSend():
 			birdtextCheck = birdtext
 
 		await asyncio.sleep(30)
-	
+'''	
 @bot.event
 async def on_message(message):
 	if message.author.id == "459090830330691594": #go out of function if the bot did it
@@ -252,7 +252,7 @@ async def on_message(message):
 	if message.content.upper().startswith('!CLEARGSPREAD') and message.author.id == "143132657692311561":
 		botgspread.botgspread().delete_allrows()
 		
-bot.loop.create_task(bphMessageSend())
+#bot.loop.create_task(bphMessageSend())
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 
 bot.run(os.environ.get('token'))
