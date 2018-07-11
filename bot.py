@@ -38,13 +38,10 @@ async def on_ready():
 async def on_reaction_add(reaction,user):
 	if str(reaction.emoji) == "<:GWfroggySadCat:400751069619159050>":
 		await bot.add_reaction(reaction.message, emoji = reaction.emoji)
-	else:
-		return
 	
 	if str(reaction.emoji) == "🇫":
 		await bot.add_reaction(reaction.message, emoji = reaction.emoji)
-	else:
-		return
+
 
 @bot.event
 async def on_message(message):
