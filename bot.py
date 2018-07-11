@@ -40,51 +40,12 @@ async def on_reaction_add(reaction,user):
 		await bot.add_reaction(reaction.message,emoji = reaction.emoji)
 	else:
 		return
-'''	
-import tweepy
-from tweepy import OAuthHandler
-from tweepy.streaming import StreamListener
-birdtext= "_ _" #global (B)ird(P)er(H)our var
-birdtextCheck = "_ _" #global check var
+	
+	if reaction.emoji == "🇫":
+		await bot.add_reaction(reaction.message,emoji = reaction.emoji)
+	else:
+		return
 
-class MyStreamListener(tweepy.StreamListener): #stream for birdperhour bot
-		def on_status(self, status):
-			global birdtext
-			#birdText = (status.entities['media'][0]['expanded_url'])
-			if (not status.retweeted) and ('RT @' not in status.text): # dont get retweets
-				try:
-					birdtext= (status.entities['media'][0]['expanded_url'])
-				except:
-					birdtext= "_ _" #global (B)ird(P)er(H)our var
-					birdtextCheck = "_ _" #global check var
-
-		def on_error(self, status_code): #disconnect if we fail
-			if status_code == 420:
-				#returning False in on_data disconnects the stream
-				return False
-
-listener = MyStreamListener()
-myStream = tweepy.Stream(auth= (twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetAPI()).auth , listener=listener)
-myStream.filter(follow=['2965150132'],async=True) #track birdperhour twitter bot
-
-async def bphMessageSend():
-	await bot.wait_until_ready()
-	global birdtextCheck #use the global variable, and declare it as such
-	global birdtext
-	while not bot.is_closed:	
-
-
-		if birdtext == "_ _" or birdtext == birdtextCheck:
-			await asyncio.sleep(30)
-			continue
-		else:
-			print (birdtext + "bphMessageSend")
-			animalChannel = discord.Object(id='435149265673912351') #py-buns animal kingdom
-			await bot.send_message(animalChannel, birdtext)
-			birdtextCheck = birdtext
-
-		await asyncio.sleep(30)
-'''	
 @bot.event
 async def on_message(message):
 	if message.author.id == "459090830330691594": #go out of function if the bot did it
