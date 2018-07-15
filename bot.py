@@ -102,14 +102,13 @@ async def on_message(message):
 					numDND = numDND +1
 
 			serverEmbed = discord.Embed(
-
 				title= newServer.name,
 				description= 	"**❯ General information** \n"
 								"Server region: " + str(newServer.region)+ "\n"
 								"Created at: " + str(newServer.created_at)+ "\n"
 								"Members: " + str(newServer.member_count) + "\n"
 								"**❯ Members** \n"
-								"**Total online**: " + str((numOnline + numIdle + numDND)) + "\n"
+								"*Total online*: " + str((numOnline + numIdle + numDND)) + "\n"
 								"Online: " + str(numOnline) + "\n"
 								"Idle: " + str(numIdle) + "\n"
 								"Busy: " + str(numDND) + "\n"
@@ -120,12 +119,15 @@ async def on_message(message):
 								"Splash: " +str(newServer.splash_url) + "\n"
 				)
 			serverEmbed.set_image(url=newServer.icon_url)
-			serverEmbed.set_footer(text= "Requested from: " + message.author.name)
-
+			serverEmbed.set_footer(text= "Requested by: " + message.author.name)
 
 			await bot.send_message(message.channel,embed=serverEmbed)
-
-
+		elif "".join(args[1:]).isdigit() == True: #if userID is put in instead
+			try:
+				user = bot.get_user_info(str(args[1:]))
+				print (user().name)
+			else:
+				return
 		else:
 			try:
 				try: #get mentioned user
@@ -165,9 +167,8 @@ async def on_message(message):
 				await bot.send_message(message.channel,"E")
 
 	if message.content.upper().startswith("!SADCAT") or message.content.startswith("<:GWfroggySadCat:400751069619159050>"):
-		embed = discord.Embed()
-		embed.set_image(url="https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png") #sadcat image from github
-		await bot.send_message(message.channel,embed=embed)
+		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png", stream=True)
+		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
 
 	if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper() or "RESPECC" in message.content.upper())) or ("PRESS" in message.content.upper() and "F" in message.content.upper()) or message.content.upper().startswith("F") :
 		if message.content.upper().startswith("F") and len(message.content) > 1:
@@ -185,11 +186,10 @@ async def on_message(message):
 		except:
 			return
 
-		if messageNEW == "sadcat":
-			embed = discord.Embed()
-			embed.set_image(url="https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png") #sadcat image from github
-			await bot.send_message(message.channel,embed=embed)
-		else:
+		if messageNEW == "sadcat": #if message has sadcat in the beginning,
+			response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png", stream=True)
+			await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
+		else: #if not, send the normal message
 			await bot.send_message(message.channel, messageNEW)
 
 	if message.content.upper().startswith("!DUCK"):
@@ -209,8 +209,7 @@ async def on_message(message):
 			
 	if message.content.upper().startswith('!CLEARGSPREAD') and message.author.id == "143132657692311561":
 		botgspread.botgspread().delete_allrows()
-		
-#bot.loop.create_task(bphMessageSend())
-bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 
+
+bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 bot.run(os.environ.get('token'))
