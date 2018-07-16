@@ -126,7 +126,7 @@ async def on_message(message):
 			try:
 				user = bot.get_user_info(str(args[1:]))
 				print (user().name)
-			else:
+			except:
 				return
 		else:
 			try:
