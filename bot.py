@@ -5,6 +5,7 @@ from discord.ext import commands
 import asyncio
 import datetime
 import io
+import requests
 
 import twitterstatus, botgspread
 
