@@ -61,7 +61,7 @@ async def on_message(message):
 	if message.content.upper().startswith("!PING"):
 		await bot.send_message(message.channel, ":ping_pong: ")
 
-	if message.content.upper().startswith("!LOSS") or "message.content.upper().startswith("LOSS"):
+	if message.content.upper().startswith("!LOSS"):
 		try:
 			await bot.add_reaction(message,emoji="🕛")	#12
 			await bot.add_reaction(message,emoji="🕐")	#1
