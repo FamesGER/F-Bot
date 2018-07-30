@@ -170,7 +170,11 @@ async def on_message(message):
 	if message.content.upper().startswith("!SADCAT") or message.content.startswith("<:GWfroggySadCat:400751069619159050>"):
 		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png", stream=True)
 		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
-
+		
+	if message.content.upper().startswith("!SCREAMCAT"):
+		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/screamcat.png", stream=True)
+		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
+	
 	if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper() or "RESPECC" in message.content.upper())) or ("PRESS" in message.content.upper() and "F" in message.content.upper()) or message.content.upper().startswith("F") :
 		if message.content.upper().startswith("F") and len(message.content) > 1:
 			if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper() or "RESPECC" in message.content.upper())) or ("PRESS" in message.content.upper() and "F" in message.content.upper()):
