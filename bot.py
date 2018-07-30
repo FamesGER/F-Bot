@@ -214,6 +214,26 @@ async def on_message(message):
 			
 	if message.content.upper().startswith('!CLEARGSPREAD') and message.author.id == "143132657692311561":
 		botgspread.botgspread().delete_allrows()
+		
+		if message.content.upper().startswith('!GAME'):
+		serverMembers = message.server.members
+		args = message.content.split(" ") #get message after command
+		if "".join(args[1:]) == 'list': #lists members with Game role
+			newText=[]
+			#newText.append('```')#beginn
+			for member in serverMembers:
+				if "473379902708514817" in [y.id for y in member.roles]:
+					newText.append(str(member.name))
+			#newText.append('```')#end
+			gameEmbed = discord.Embed( #create the embed
+					title = "Gamers",
+					description = str(newText)
+				)	
+			gameEmbed.set_footer(text= "Requested by: " + message.author.name)
+			await bot.send_message(message.channel,embed=gameEmbed)
+
+		if "".join(args[1:]) == 'add':
+			print("E")
 
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
