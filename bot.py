@@ -223,7 +223,7 @@ async def on_message(message):
 				#newText.append('```')#beginn
 				for member in serverMembers:
 					if "473379902708514817" in [y.id for y in member.roles]:
-					newText.append(str(member.name))
+						newText.append(str(member.name))
 				#newText.append('```')#end
 				gameEmbed = discord.Embed( #create the embed
 						title = "Gamers",
