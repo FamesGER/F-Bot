@@ -171,7 +171,7 @@ async def on_message(message):
 		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png", stream=True)
 		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
 		
-	if message.content.upper().startswith("!SCREAMCAT"):
+	if message.content.upper().startswith("!CRYCAT"):
 		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/screamcat.png", stream=True)
 		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
 	
