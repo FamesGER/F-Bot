@@ -37,12 +37,12 @@ async def on_ready():
 
 @bot.event
 async def on_reaction_add(reaction,user):
-	if str(reaction.emoji) == "<:GWfroggySadCat:400751069619159050>":
+	if str(reaction.emoji) == "<:GWfroggySadCat:400751069619159050>" or str(reaction.emoji) == "🇫":
 		await bot.add_reaction(reaction.message, emoji = reaction.emoji)
-	
-	if str(reaction.emoji) == "🇫":
-		await bot.add_reaction(reaction.message, emoji = reaction.emoji)
-
+@bot.event
+async def on_reaction_remove(reaction,user):
+	if str(reaction.emoji) == "<:GWfroggySadCat:400751069619159050>" or str(reaction.emoji) == "🇫" and reaction.count == 1 : #if last emoji is unreacted, unreact too
+		await bot.remove_reaction(reaction.message, emoji = reaction.emoji, member= reaction.message.server.me)
 
 @bot.event
 async def on_message(message):
@@ -216,21 +216,21 @@ async def on_message(message):
 		botgspread.botgspread().delete_allrows()
 		
 		if message.content.upper().startswith('!GAME'):
-		serverMembers = message.server.members
-		args = message.content.split(" ") #get message after command
-		if "".join(args[1:]) == 'list': #lists members with Game role
-			newText=[]
-			#newText.append('```')#beginn
-			for member in serverMembers:
-				if "473379902708514817" in [y.id for y in member.roles]:
+			serverMembers = message.server.members
+			args = message.content.split(" ") #get message after command
+			if "".join(args[1:]) == 'list': #lists members with Game role
+				newText=[]
+				#newText.append('```')#beginn
+				for member in serverMembers:
+					if "473379902708514817" in [y.id for y in member.roles]:
 					newText.append(str(member.name))
-			#newText.append('```')#end
-			gameEmbed = discord.Embed( #create the embed
-					title = "Gamers",
-					description = str(newText)
-				)	
-			gameEmbed.set_footer(text= "Requested by: " + message.author.name)
-			await bot.send_message(message.channel,embed=gameEmbed)
+				#newText.append('```')#end
+				gameEmbed = discord.Embed( #create the embed
+						title = "Gamers",
+						description = str(newText)
+					)	
+				gameEmbed.set_footer(text= "Requested by: " + message.author.name)
+				await bot.send_message(message.channel,embed=gameEmbed)
 
 		if "".join(args[1:]) == 'add':
 			print("E")
