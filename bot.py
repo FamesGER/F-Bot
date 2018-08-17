@@ -234,14 +234,14 @@ async def on_message(message):
 
 		if "".join(args[1:]) == 'add':
 			print("E")
+			
 	if message.content.upper().startswith('THIS IS SO SAD'):
 		try:
-			for x in bot.get_all_emojis():
-				if x.id == '479740476992258078':
+			for x in bot.get_all_emojis(): #get all the emojis
+				if x.id == '479740476992258078': #find sadcat emoji
 					await bot.add_reaction(message, x)
 		except:
 			print("sadcat didn't work")
-
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 bot.run(os.environ.get('token'))
