@@ -173,7 +173,7 @@ async def on_message(message):
 		
 	if message.content.upper().startswith("!CRYCAT"):
 		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/screamcat.png", stream=True)
-		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
+		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='cryCat.png')
 	
 	if ("PAY" in  message.content.upper() and ("RESPECT" in message.content.upper() or "RESPECC" in message.content.upper())) or ("PRESS" in message.content.upper() and "F" in message.content.upper()) or message.content.upper().startswith("F") :
 		if message.content.upper().startswith("F") and len(message.content) > 1:
