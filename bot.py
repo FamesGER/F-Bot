@@ -167,9 +167,17 @@ async def on_message(message):
 			except:
 				await bot.send_message(message.channel,"E")
 
-	if message.content.upper().startswith("!SADCAT") or message.content.startswith("<:GWfroggySadCat:400751069619159050>"):
+	if message.content.upper().startswith("!SADCAT"):
 		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/sadCat.png", stream=True)
 		await bot.send_file(message.channel, io.BytesIO(response.raw.read()), filename='sadCat.png')
+
+	if message.content.startswith("<:GWfroggySadCat:400751069619159050>"):
+		try:
+			for x in bot.get_all_emojis():
+				if x.id == '479740476992258078':
+					await bot.add_reaction(message, x)
+		except:
+			print("sadcat didn't work")
 		
 	if message.content.upper().startswith("!CRYCAT"):
 		response = requests.get("https://raw.githubusercontent.com/FamesGER/F-Bot/master/screamcat.png", stream=True)
