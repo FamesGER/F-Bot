@@ -224,9 +224,10 @@ async def on_message(message):
 		botgspread.botgspread().delete_allrows()
 		
 	if message.content.upper().startswith('!GAME'):
+
 		serverMembers = message.server.members
 		args = message.content.split(" ") #get message after command
-		if "".join(args[1:]) == 'list': #lists members with Game role
+		if "".join(args[1:]) == 'players': #lists members with Game role
 			newText=[]
 			#newText.append('```')#beginn
 			for member in serverMembers:
@@ -238,10 +239,31 @@ async def on_message(message):
 					description = str(newText)
 				)	
 			gameEmbed.set_footer(text= "Requested by: " + message.author.name)
-			await bot.send_message(message.channel,embed=gameEmbed)
+			await bot.send_message(message.channel, embed=gameEmbed)
 
-		if "".join(args[1:]) == 'add':
-			print("E")
+		if "".join(args[1]) == 'list':
+			gamesListRaw = botgspread.botgspread(sheetNumber= 1).row_val() #get the current row
+			print(str(gamesListRaw))
+			gamesListFormat1 = str(gamesListRaw).replace("', '","\n")
+			gamesListFormat2 = str(gamesListFormat1.replace("['","")).replace("']","")
+
+			gamesList= gamesListFormat2
+			listEmbed = discord.Embed(
+				title= "Games",
+				description=gamesList
+				)
+			#for x in gamesList:
+			#	listEmbed.add_field(name="_ _",value=x,inline=False) #inline is false to it creates a new line for each game
+			await bot.send_message(message.channel, embed=listEmbed)
+
+		#if arg 1(second) is add, add everything arg 2 to the sheet
+		if "".join(args[1]) == 'add':
+			addedGame= str("".join(args[2]))
+			currentGames = botgspread.botgspread(sheetNumber= 1).row_val(1)
+			currentGames.append(addedGame)
+			newGames = currentGames
+			botgspread.botgspread(sheetNumber= 1).delete_row() #delete old games row
+			botgspread.botgspread(sheetNumber= 1).row_ins(val=newGames) #insert updated one
 			
 	if message.content.upper().startswith('THIS IS SO SAD'):
 		try:
