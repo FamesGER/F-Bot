@@ -76,7 +76,7 @@ async def on_message(message):
 		#args[0] = !SAY
 		#args[1] = Hi
 		#args[2] = there
-			await bot.send_message(message.channel,message.author.name + " wanted me to say: " " ".join(args[1:]))
+			await bot.send_message(message.channel, (message.author.name + " wanted me to say:" " ".join(args[1:])))
 			timeNow = datetime.datetime.now()
 			gspreadmessage = [message.author.name, message.content, str(timeNow.month) + "." +  str(timeNow.day) + " at " + str(timeNow.hour) + ":" + str(timeNow.minute) + " UTC"]
 			botgspread.botgspread().row_ins(val=gspreadmessage)
