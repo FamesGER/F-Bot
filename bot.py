@@ -273,7 +273,7 @@ async def on_message(message):
 		except:
 			print("sadcat didn't work")
 			
-	if message.content.upper().startswith('YEE HAW') or message.content.upper().startswith('YEEHAW') or message.content.upper().startswith('YEEYEE') or message.content.upper().startswith('YEE YEE'):
+	if message.content.upper().startswith('YEE HAW') or message.content.upper().startswith('YEEHAW') or message.content.upper().startswith('YEEYEE') or message.content.upper().startswith('YEE YEE') or message.content.upper().startswith('YIPPY KAI YAY'):
 		try:
 			await bot.add_reaction(message,emoji="🤠")
 		except:
