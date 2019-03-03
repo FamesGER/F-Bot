@@ -275,7 +275,7 @@ async def on_message(message):
 			
 	if message.content.upper().startswith('YEE HAW') or message.content.upper().startswith('YEEHAW') or message.content.upper().startswith('YEEYEE') or message.content.upper().startswith('YEE YEE'):
 		try:
-			await bot.add_reaction(message,moji="🤠")
+			await bot.add_reaction(message,emoji="🤠")
 		except:
 			print("sad")
 
