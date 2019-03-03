@@ -272,6 +272,12 @@ async def on_message(message):
 					await bot.add_reaction(message, x)
 		except:
 			print("sadcat didn't work")
+			
+		if message.content.upper().startswith('YEE HAW') or message.content.upper().startswith('YEEHAW') or message.content.upper().startswith('YEEYEE') or message.content.upper().startswith('YEE YEE'):
+		try:
+			await bot.add_reaction(message,moji="🤠")
+		except:
+			print("sad")
 
 bot.loop.create_task(dailyDuck()) #daily duck, 10:00am UTC
 bot.run(os.environ.get('token'))
