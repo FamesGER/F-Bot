@@ -22,7 +22,7 @@ async def dailyDuck():
 	animalChannel = discord.Object(id='435149265673912351') #py-buns animal kingdom
 	while not bot.is_closed:
 		timeNow = datetime.datetime.now()
-		if timeNow.hour == 10 and timeNow.minute == 1: #UTC 10:01 
+		if timeNow.hour == 9 and timeNow.minute == 1: #UTC 10:01 
 			newDuck = twitterstatus.getTweet(c_key,c_secret,a_token,a_secret).tweetStatus() #get tweet and media from DucksDaily, plus insert the tokens
 			await bot.send_message(animalChannel, newDuck)
 			botgspread.botgspread().row_ins(val="New duck" + str(timeNow.hour))
