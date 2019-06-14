@@ -21,7 +21,7 @@ async def dailyDuck():
 	await bot.wait_until_ready()
 	animalChannel = discord.Object(id='435149265673912351') #py-buns animal kingdom, team source
 	animalChannel_2 = discord.Object(id='571786875933687828') #py-buns animal kingdom, team source
-	duckActive = false
+	duckActive = true #deactive or activate autoduck
 	while not bot.is_closed:
 		timeNow = datetime.datetime.now()
 		if timeNow.hour == 11 and timeNow.minute == 1 and duckActive == true : #DE 13:01
