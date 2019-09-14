@@ -73,18 +73,18 @@ async def on_message(message):
 		except:
 			await bot.send_message(message.channel,"I don't have permissions to add reactions.")
 
-	#if message.content.upper().startswith("!SAY"):
-		#try:
-		#	args = message.content.split(" ") #get message after command
-		#args[0] = !SAY
-		#args[1] = Hi
-		#args[2] = there
-			#await bot.send_message(message.channel,"".join(args[1:]))
-			#timeNow = datetime.datetime.now()
-			#gspreadmessage = [message.author.name, message.content, str(timeNow.month) + "." +  str(timeNow.day) + " at " + str(timeNow.hour) + ":" + str(timeNow.minute) + " UTC"]
-			#botgspread.botgspread().row_ins(val=gspreadmessage)
-		#except:
-			#return
+	if message.content.upper().startswith("!SAY") and message.author.id == "459090830330691594":
+		try:
+			args = message.content.split(" ") #get message after command
+			args[0] = !SAY
+			args[1] = Hi
+			args[2] = there
+			await bot.send_message(message.channel,"".join(args[1:]))
+			timeNow = datetime.datetime.now()
+			gspreadmessage = [message.author.name, message.content, str(timeNow.month) + "." +  str(timeNow.day) + " at " + str(timeNow.hour) + ":" + str(timeNow.minute) + " UTC"]
+			botgspread.botgspread().row_ins(val=gspreadmessage)
+		except:
+			return
 
 	if message.content.upper().startswith("!INFO"):
 		args = message.content.split(" ") #get message after command
