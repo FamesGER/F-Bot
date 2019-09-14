@@ -76,9 +76,9 @@ async def on_message(message):
 	if message.content.upper().startswith("!SAY") and message.author.id == "459090830330691594":
 		try:
 			args = message.content.split(" ") #get message after command
-			args[0] = !SAY
-			args[1] = Hi
-			args[2] = there
+			#args[0] = !SAY
+			#args[1] = Hi
+			#args[2] = there
 			await bot.send_message(message.channel,"".join(args[1:]))
 			timeNow = datetime.datetime.now()
 			gspreadmessage = [message.author.name, message.content, str(timeNow.month) + "." +  str(timeNow.day) + " at " + str(timeNow.hour) + ":" + str(timeNow.minute) + " UTC"]
