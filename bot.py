@@ -73,7 +73,7 @@ async def on_message(message):
 		except:
 			await bot.send_message(message.channel,"I don't have permissions to add reactions.")
 
-	if message.content.upper().startswith("!SAY") and message.author.id == "459090830330691594":
+	if message.content.upper().startswith("!SAY") and message.author.id == "143132657692311561":
 		try:
 			args = message.content.split(" ") #get message after command
 			#args[0] = !SAY
