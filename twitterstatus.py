@@ -1,5 +1,5 @@
 class getTweet():
-	def __init__(self, consumer_key, consumer_secret, access_token, access_secret, twitterUser = "@LocalMallard", amount = 1):
+	def __init__(self, consumer_key, consumer_secret, access_token, access_secret, twitterUser = "@ducksdailyy", amount = 1):
 		self.c_key = consumer_key
 		self.c_secret = consumer_secret
 		self.a_token = access_token
